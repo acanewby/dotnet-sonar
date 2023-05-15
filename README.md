@@ -1,11 +1,12 @@
 # dotnet-sonar
 
-[![Docker Cloud Status](https://img.shields.io/docker/cloud/automated/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
-[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
-[![Docker Pulls](https://img.shields.io/docker/pulls/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
+[![Docker Hub Build Configuration](https://img.shields.io/docker/cloud/automated/intellicon/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
+[![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/intellicon/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
+[![Docker Hub Image Pulls](https://img.shields.io/docker/pulls/intellicon/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
+[![Docker Hub Image Tag](https://img.shields.io/docker/v/intellicon/dotnet-sonar?sort=date)](https://hub.docker.com/r/intellicon/dotnet-sonar/tags)
 
-[![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=semver)](https://github.com/acanewby/dotnet-sonar/releases/tag)
-[![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=date)](https://hub.docker.com/r/intellicon/dotnet-sonar/tags)
+
+
 
 # Notes on this fork
 
