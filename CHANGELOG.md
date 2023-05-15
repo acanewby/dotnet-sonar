@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 5.x.x-beta (UNRELEASED)
+
 ## 5.13.0 (2023MAY15)
 
 * SonarScanner for .Net 5.13
