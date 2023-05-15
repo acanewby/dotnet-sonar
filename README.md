@@ -7,10 +7,31 @@
 [![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=semver)](https://github.com/acanewby/dotnet-sonar/releases/tag)
 [![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=date)](https://hub.docker.com/r/intellicon/dotnet-sonar/tags)
 
+----
+
+Notes on this fork
+
+----
+
 Forked from the very excellent [nosinovacao/dotnet-sonar](https://github.com/nosinovacao/dotnet-sonar) to reintroduce the automated builds to Docker Hub 
 that seem to have been discontinued in the original repository.
 
+To make things easier for cutting/pasting example code, instances of `nosinovacao/dotnet-sonar` have been replaced with `intellicon/dotnet-sonar`.
+This is ___in no way___ intended to plagiarize the hard work done by [@nosinovacao](https://github.com/nosinovacao).
 
+_Warning:_ To allow for the widest possible range of out-of-the-box analysis capability, this image bundles a large number of .Net SDKs.
+While this provides good compatibility, it does make the resulting image ___absolutely huge___ (~5GB).
+
+----
+
+Original repository commentary follows:
+
+----
+
+
+
+
+Docker images available at [intellicon/dotnet-sonar](https://hub.docker.com/repository/docker/intellicon/dotnet-sonar)
 
 This is a container used to build dotnet projects and provide SonarQube analysis using SonarQube MSBuild Scanner.
 
@@ -18,16 +39,16 @@ It also allows you to run Docker in Docker using a docker.sock mount.
 
 ----
 
-This latest image was built with the following components:
-
-* dotnetcore-sdk 7.0.102
-* dotnetcore-runtime 7.0.2 (required by Sonar-Scanner)
-* SonarQube MSBuild Scanner 5.11.0.60783
-* Docker binaries 20.10.x (for running Docker in Docker using the docker.sock mount)
-* OpenJDK Java Runtime 11 (required by Sonar-Scanner and some Sonar-Scanner plugins)
-* NodeJS 16 (required by Sonar-Scanner web analysis plugins)
-
 ## Supported tags and respective `Dockerfile` links
+
+### Tagging scheme in this repository
+
+Since the primary goal is to access the bundled SonarScanner for .Net, our tags match the version of that component
+
+[CHANGELOG](./CHANGELOG.md)
+
+
+### Included for legacy reference from original repository
 
 > Tags are written using the following pattern: `dotnet-sonar:<year>.<month>.<revision>`
 
@@ -92,57 +113,43 @@ Full documentation: <https://docs.sonarqube.org/display/SCAN/Analyzing+with+Sona
 
 ### Inside container
 
-### Using Docker
-
-**Inside container:**
-
 ```bash
-$ dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:sonarProjectKey
+$ dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:sonarProjectKey /d:sonar.host.url="<SonarQubeServerUrl:Port>" /d:sonar.token="<SonarQubeServerToken>"
 $ dotnet build
-$ dotnet /sonar-scanner/SonarScanner.MSBuild.dll end
+$ dotnet /sonar-scanner/SonarScanner.MSBuild.dll end  /d:sonar.token="<SonarQubeServerToken>"
 ```
 
-**Configure external SonarQube Server:**
-
-```bash
-$ dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:sonarProjectKey /d:sonar.host.url="<SonarQubeServerUrl:Port>" /d:sonar.login="<SonarQubeServerToken>"
-$ dotnet build
-$ dotnet /sonar-scanner/SonarScanner.MSBuild.dll end  /d:sonar.login="<SonarQubeServerToken>"
-```
-
-**Outside container:**
+### Outside container
 
 Simple Usage:
 ```bash
-$ docker run -it --rm -v <my-project-source-path>:/source nosinovacao/dotnet-sonar:latest bash -c "cd source \
+$ docker run -it --rm -v <my-project-source-path>:/source intellicon/dotnet-sonar:latest bash -c "cd source \
     && dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:sonarProjectKey /name:sonarProjectName /version:buildVersion \
     && dotnet restore \
     && dotnet build -c Release \
     && dotnet /sonar-scanner/SonarScanner.MSBuild.dll end"
 ```
 
-Advance Usage:
+Advanced Usage:
 
 ```bash
 $ docker run -it --rm \
     -v <my-project-source-path>:/source \
     -v <my-nugetconfig-source-path>:/nuget \
-    dotnet-sonar:latest \
+    intellicon/dotnet-sonar:latest \
     bash -c \
         "cd source \
         && dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin \
         /k:<ProjectName> /name:<my-project-name> /version:<my-project-version> \
         /d:sonar.host.url="<my-sonar-server-url>" \
-        /d:sonar.login="<my-sonar-server-user>" \
-        /d:sonar.password="<my-sonar-server-pass>" \
+        /d:sonar.token="<my-sonar-server-token>" \
         /d:sonar.cs.opencover.reportsPaths='tests/**/coverage.opencover.xml' \
         && dotnet restore --configfile /nuget/NuGet.Config \
         && dotnet build -c Release \
         && dotnet publish -c Release -r linux-x64 -o deployment \
         && dotnet test --no-build -c Release --filter "Category=Unit" --logger trx --results-directory testResults /p:CollectCoverage=true /    p:CoverletOutputFormat=\"opencover\" \
         && dotnet /sonar-scanner/SonarScanner.MSBuild.dll end \
-        /d:sonar.login="<my-sonar-server-user>" \
-        /d:sonar.password="<my-sonar-server-pass>""
+        /d:sonar.token="<my-sonar-server-token>""
 ```
 
 The script above does the following:
@@ -155,6 +162,44 @@ The script above does the following:
 * Publishes the build to the deployment folder
 * Runs the tests and stores the test results in testResults folder. Change this command to your unit tests needs
 * Ends the sonarscanner and publishes the sonarqube analysis results to the sonarqube server
+
+
+### Directory management
+
+_Note: In the `dotnet restore` and `dotnet build` steps above, you will need to provide an additional argument if your `.sln` file is not located in the folder from which you launch the analysis._
+
+This is common when sources are located in a repository subdirectory:
+
+```
+   REPO_ROOT
+      |
+      |--CHANGELOG.md
+      |--CODE_OF_CONDUCT.md
+      |--CONTRIBUTING.md
+      |--LICENSE
+      |--README.md
+      |--content
+      |--src   << code to be analysed
+      |--tools
+```
+
+You need to mount the repository at its root, so Sonarqube can detect the SCM provider from `.git` and similar files but then the solution build cannot be located:
+
+```shell
+root@7baace47320a:/source# dotnet restore
+MSBUILD : error MSB1003: Specify a project or solution file. The current working directory does not contain a project or solution file.
+```
+
+The steps to success are:
+
+1. Launch the container with your repository mounted at its root
+   * `docker run -it --rm -v <local repository root>:/source intellicon/dotnet-sonar:latest { ...other arguments... }`
+2. Pass the source subdirectory as an argument to `dotnet restore` and `dotnet build`:
+   * `dotnet restore ./src`
+   * `dotnet build ./src -c Release`
+
+
+
 
 ### Using Jenkins pipeline
 
@@ -178,7 +223,7 @@ node('somenode-with-docker')
 {
     withSonarQubeEnv('my-jenkins-configured-sonar-environment')
     {
-        docker.image('nosinovacao/dotnet-sonar:latest').inside()
+        docker.image('intellicon/dotnet-sonar:latest').inside()
         {
             withEnv(envVariables)
             {
@@ -216,7 +261,7 @@ Please note that if you want to use Docker inside Docker (DinD) you need to perf
 **The following actions will expose your host to several security vulnerabilities** and therefore this should only be used when you absolutely must to:
 
 ```groovy
-docker.image('nosinovacao/dotnet-sonar:latest').inside("--group-add docker -v /var/run/docker.sock:/var/run/docker.sock")
+docker.image('intellicon/dotnet-sonar:latest').inside("--group-add docker -v /var/run/docker.sock:/var/run/docker.sock")
 {
     // Some stuff
     docker.image.('hello-world:latest').inside()
