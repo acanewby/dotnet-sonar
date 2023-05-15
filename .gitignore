@@ -1,0 +1,93 @@
+################################################
+# General
+################################################
+#
+# Default excludes
+#
+
+# Binaries
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.war
+*.ear
+*.sar
+*.class
+
+
+
+# IntelliJ project files
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Misc IDE
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+
+# OS
+.DS_Store
+Thumbs.db
+
+# misc
+**/.sass-cache
+**/.sass-cache/*
+#**/*.css
+**/*.css.map
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+**/*.ini
+
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+
+# dependencies
+node_modules/
+
+# e2e
+/e2e/*.map
+
+# testing
+coverage/
+karma-results/
+e2e-junit/
+e2e-html/
+
+# SonarQube
+.scannerwork/
+
+# profiling
+profile-*
+
+
+
+# C extensions
+*.so
+

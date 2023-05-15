@@ -1,11 +1,16 @@
 # dotnet-sonar
 
-<!-- [![Docker Cloud Status](https://img.shields.io/docker/cloud/automated/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/nosinovacao/dotnet-sonar)
-[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/nosinovacao/dotnet-sonar)
-[![Docker Pulls](https://img.shields.io/docker/pulls/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/nosinovacao/dotnet-sonar)
+[![Docker Cloud Status](https://img.shields.io/docker/cloud/automated/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nosinovacao/dotnet-sonar.svg)](https://hub.docker.com/r/intellicon/dotnet-sonar)
 
-[![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=semver)](https://github.com/nosinovacao/dotnet-sonar/releases/tag)
-[![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=date)](https://hub.docker.com/r/nosinovacao/dotnet-sonar/tags) -->
+[![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=semver)](https://github.com/acanewby/dotnet-sonar/releases/tag)
+[![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=date)](https://hub.docker.com/r/intellicon/dotnet-sonar/tags)
+
+Forked from the very excellent [nosinovacao/dotnet-sonar](https://github.com/nosinovacao/dotnet-sonar) to reintroduce the automated builds to Docker Hub 
+that seem to have been discontinued in the original repository.
+
+
 
 This is a container used to build dotnet projects and provide SonarQube analysis using SonarQube MSBuild Scanner.
 
