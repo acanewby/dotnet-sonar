@@ -7,11 +7,8 @@
 [![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=semver)](https://github.com/acanewby/dotnet-sonar/releases/tag)
 [![Docker Pulls](https://img.shields.io/docker/v/nosinovacao/dotnet-sonar?sort=date)](https://hub.docker.com/r/intellicon/dotnet-sonar/tags)
 
-----
+# Notes on this fork
 
-Notes on this fork
-
-----
 
 Forked from the very excellent [nosinovacao/dotnet-sonar](https://github.com/nosinovacao/dotnet-sonar) to reintroduce the automated builds to Docker Hub 
 that seem to have been discontinued in the original repository.
@@ -22,33 +19,28 @@ This is ___in no way___ intended to plagiarize the hard work done by [@nosinovac
 _Warning:_ To allow for the widest possible range of out-of-the-box analysis capability, this image bundles a large number of .Net SDKs.
 While this provides good compatibility, it does make the resulting image ___absolutely huge___ (~5GB).
 
-----
-
-Original repository commentary follows:
-
-----
-
-
-
-
 Docker images available at [intellicon/dotnet-sonar](https://hub.docker.com/repository/docker/intellicon/dotnet-sonar)
 
-This is a container used to build dotnet projects and provide SonarQube analysis using SonarQube MSBuild Scanner.
-
-It also allows you to run Docker in Docker using a docker.sock mount.
-
-----
-
-## Supported tags and respective `Dockerfile` links
-
-### Tagging scheme in this repository
+## Tagging scheme in this repository
 
 Since the primary goal is to access the bundled SonarScanner for .Net, our tags match the version of that component
 
 [CHANGELOG](./CHANGELOG.md)
 
 
-### Included for legacy reference from original repository
+# Original repository commentary
+
+_(with edits and enhancements)_
+
+----
+This is a container used to build dotnet projects and provide SonarQube analysis using SonarQube MSBuild Scanner.
+
+It also allows you to run Docker in Docker using a `docker.sock` mount.
+
+----
+
+## Supported tags and respective `Dockerfile` links
+
 
 > Tags are written using the following pattern: `dotnet-sonar:<year>.<month>.<revision>`
 
