@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## x.x.x (UNRELEASED)
+
 ## 7.1.1 (2025MAY03)
 
 * SonarScanner for .Net 7.1.1
