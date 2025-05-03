@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 10.1.2 (UNRELEASED)
+## 10.1.2 (2025MAY03)
 
 * SonarScanner for .Net 10.1.2
 * .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0
