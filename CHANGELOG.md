@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## x.x.x (UNRELEASED)
+## 8.0.3 (UNRELEASED)
+
+* SonarScanner for .Net 8.0.3
+* .Net SDKs 5.0, 6.0, 7.0, 8.0
+* nodejs 20
 
 ## 7.1.1 (2025MAY03)
 
