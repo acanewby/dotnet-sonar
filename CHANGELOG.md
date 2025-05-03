@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 5.15.1 (UNRELEASED)
+## 5.15.1 (2025MAY03)
 
 * SonarScanner for .Net 5.15.1
 * .Net SDKs 2.0, 2.1, 2.2, 3.0, 3.1, 5.0, 6.0, 7.0, 8.0
