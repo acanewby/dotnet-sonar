@@ -2,6 +2,12 @@
 
 ## x.x.x (UNRELEASED)
 
+* SonarScanner for .Net 7.1.1
+* .Net SDKs 5.0, 6.0, 7.0, 8.0
+* nodejs 20
+
+Note: As of 7.0.0, SonarScanner for .Net self-provisions its own Java runtime.
+
 ## 6.2.0 (2025MAY03)
 
 * SonarScanner for .Net 6.2.0
