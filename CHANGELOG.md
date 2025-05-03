@@ -1,6 +1,11 @@
 # CHANGELOG
 
-## x.x.x (UNRELEASED)
+## 6.2.0 (2025MAY03)
+
+* SonarScanner for .Net 6.2.0
+* .Net SDKs 5.0, 6.0, 7.0, 8.0
+* nodejs 20
+* OpenJDK 17
 
 ## 5.15.1 (2025MAY03)
 
