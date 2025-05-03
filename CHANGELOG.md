@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## x.x.x (UNRELEASED)
+
 ## 5.15.1 (2025MAY03)
 
 * SonarScanner for .Net 5.15.1
