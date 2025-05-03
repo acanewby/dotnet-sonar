@@ -26,7 +26,7 @@ Docker images available at [intellicon/dotnet-sonar](https://hub.docker.com/repo
 
 Since the primary goal is to access the bundled SonarScanner for .Net, our tags match the version of that component
 
-[CHANGELOG](./CHANGELOG.md)
+[CHANGELOG](https://github.com/acanewby/dotnet-sonar/blob/master/CHANGELOG.md)
 
 
 # Original repository commentary

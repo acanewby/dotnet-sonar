@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 
 # Dockerfile meta-information
 LABEL maintainer="intellicon" \
@@ -8,16 +8,11 @@ LABEL maintainer="intellicon" \
 # Choose SONAR_SCANNER_MSBUILD_VERSION and NETAPP_VERSION accordingly
 
 ENV DOTNET_INSTALL_DIR=/usr/share/dotnet \
-    SONAR_SCANNER_MSBUILD_VERSION=5.13.0.66756 \
+    SONAR_SCANNER_MSBUILD_VERSION=5.15.1.88158 \
     DOTNET_SDK_VERSION=7.0 \
     NETAPP_VERSION=net5.0 \
-    OPENJDK_VERSION=11 \
-    NODEJS_VERSION=16
-
-# Do we need to specify versions?
-#        DOCKER_VERSION=5:20.10.21~3-0~debian-bullseye \
-#        CONTAINERD_VERSION=1.6.10-1 \
-
+    OPENJDK_VERSION=17 \
+    NODEJS_VERSION=20
 
 # Install .Net Core SDKs
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
@@ -29,7 +24,8 @@ RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
     && ./dotnet-install.sh --channel 3.1 \
     && ./dotnet-install.sh --channel 5.0 \
     && ./dotnet-install.sh --channel 6.0 \
-    && ./dotnet-install.sh --channel 7.0
+    && ./dotnet-install.sh --channel 7.0 \
+    && ./dotnet-install.sh --channel 8.0
 
 
 # Linux update
