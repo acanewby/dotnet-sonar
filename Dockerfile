@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0
+FROM mcr.microsoft.com/dotnet/sdk:9.0
 
 # Dockerfile meta-information
 LABEL maintainer="intellicon" \
@@ -19,7 +19,8 @@ RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
     && ./dotnet-install.sh --channel 5.0 \
     && ./dotnet-install.sh --channel 6.0 \
     && ./dotnet-install.sh --channel 7.0 \
-    && ./dotnet-install.sh --channel 8.0
+    && ./dotnet-install.sh --channel 8.0 \
+    && ./dotnet-install.sh --channel 9.0
 
 
 # Linux update
