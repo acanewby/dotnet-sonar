@@ -4,8 +4,8 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0
 LABEL maintainer="intellicon" \
     app_name="dotnet-sonar"
 
-# Output the runtime architecture
-RUN uname -m > /arch
+# Output runtime information
+RUN echo "Running on $(uname -m) in $(pwd)"
 
 # Download URL sample for SonarScanner - https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/6.2.0.85879/sonar-scanner-6.2.0.85879-net.zip
 # Choose SONAR_SCANNER_MSBUILD_VERSION and NETAPP_VERSION accordingly
