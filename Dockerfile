@@ -4,15 +4,16 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0
 LABEL maintainer="intellicon" \
     app_name="dotnet-sonar"
 
+# Output the runtime architecture
+RUN uname -m > /arch
+
 # Download URL sample for SonarScanner - https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/6.2.0.85879/sonar-scanner-6.2.0.85879-net.zip
 # Choose SONAR_SCANNER_MSBUILD_VERSION and NETAPP_VERSION accordingly
 
 ENV DOTNET_INSTALL_DIR=/usr/share/dotnet \
-    SONAR_SCANNER_MSBUILD_VERSION=10.2.0.117568 \
+    SONAR_SCANNER_MSBUILD_VERSION=10.3.0.120579 \
     NETAPP_VERSION=net \
     NODEJS_VERSION=22
-
-#     OPENJDK_VERSION=17 \
 
 # Install .Net Core SDKs
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
