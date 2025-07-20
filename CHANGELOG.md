@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 10.3.0 (UNRELEASED)
+## 10.3.0 (2025JUL20)
 
 * SonarScanner for .Net 10.3.0
 * .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0
