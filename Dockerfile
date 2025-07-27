@@ -8,11 +8,9 @@ LABEL maintainer="intellicon" \
 # Choose SONAR_SCANNER_MSBUILD_VERSION and NETAPP_VERSION accordingly
 
 ENV DOTNET_INSTALL_DIR=/usr/share/dotnet \
-    SONAR_SCANNER_MSBUILD_VERSION=10.2.0.117568 \
+    SONAR_SCANNER_MSBUILD_VERSION=10.3.0.120579 \
     NETAPP_VERSION=net \
     NODEJS_VERSION=22
-
-#     OPENJDK_VERSION=17 \
 
 # Install .Net Core SDKs
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
@@ -36,9 +34,6 @@ RUN apt-get update \
         software-properties-common
 
 RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1
-
-# Install Java
-# RUN apt-get install -y openjdk-$OPENJDK_VERSION-jre
 
 # Install NodeJs
 RUN wget https://deb.nodesource.com/setup_$NODEJS_VERSION.x \
