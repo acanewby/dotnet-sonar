@@ -4,9 +4,6 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0
 LABEL maintainer="intellicon" \
     app_name="dotnet-sonar"
 
-# Output the runtime architecture
-RUN uname -m > /arch
-
 # Download URL sample for SonarScanner - https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/6.2.0.85879/sonar-scanner-6.2.0.85879-net.zip
 # Choose SONAR_SCANNER_MSBUILD_VERSION and NETAPP_VERSION accordingly
 
@@ -37,9 +34,6 @@ RUN apt-get update \
         software-properties-common
 
 RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1
-
-# Install Java
-# RUN apt-get install -y openjdk-$OPENJDK_VERSION-jre
 
 # Install NodeJs
 RUN wget https://deb.nodesource.com/setup_$NODEJS_VERSION.x \

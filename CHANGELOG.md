@@ -1,12 +1,15 @@
 # CHANGELOG
 
-## 10.3.0 (UNRELEASED)
+## 10.3.0 (2025JUL20)
 
 * SonarScanner for .Net 10.3.0
 * .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0
 * nodejs 22
 
-_Special note: Now supports `linux/amd64,linux/arm64` platform images_ 
+_Special notes:_
+
+* Now supports `linux/amd64,linux/arm64` platform images
+* Migrated to GitHub Actions/Docker Build Cloud process
 
 ## 10.2.0 (2025JUL13)
 
