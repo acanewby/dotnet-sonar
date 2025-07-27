@@ -9,6 +9,9 @@ env:
 # Trigger whenever a new tag is pushed that matches the pattern v*.*.*
 on:
   push:
+    branches:
+      - master
+      - "release/**"
     tags:
       - "v*.*.*"
 
