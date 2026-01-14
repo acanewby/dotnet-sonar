@@ -1,3 +1,22 @@
+# -------------------------------------------------------
+# Prep the .Net SDKs
+# -------------------------------------------------------
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS sdks
+
+ENV DOTNET_INSTALL_DIR=/usr/share/dotnet
+
+# Install .Net Core SDKs
+RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
+    && chmod +x ./dotnet-install.sh \
+    && ./dotnet-install.sh --channel 5.0 \
+    && ./dotnet-install.sh --channel 6.0 \
+    && ./dotnet-install.sh --channel 7.0 \
+    && ./dotnet-install.sh --channel 8.0
+    # We can stop at 8 because we already have 9
+
+# -------------------------------------------------------
+# Build the scanner
+# -------------------------------------------------------
 FROM mcr.microsoft.com/dotnet/sdk:9.0
 
 # Dockerfile meta-information
@@ -8,19 +27,12 @@ LABEL maintainer="intellicon" \
 # Choose SONAR_SCANNER_MSBUILD_VERSION and NETAPP_VERSION accordingly
 
 ENV DOTNET_INSTALL_DIR=/usr/share/dotnet \
-    SONAR_SCANNER_MSBUILD_VERSION=10.3.0.120579 \
+    SONAR_SCANNER_MSBUILD_VERSION=10.4.1.124928 \
     NETAPP_VERSION=net \
     NODEJS_VERSION=22
 
-# Install .Net Core SDKs
-RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
-    && chmod +x ./dotnet-install.sh \
-    && ./dotnet-install.sh --channel 5.0 \
-    && ./dotnet-install.sh --channel 6.0 \
-    && ./dotnet-install.sh --channel 7.0 \
-    && ./dotnet-install.sh --channel 8.0 \
-    && ./dotnet-install.sh --channel 9.0
-
+# Migrate all the SDKs
+COPY --from=sdks ["$DOTNET_INSTALL_DIR","$DOTNET_INSTALL_DIR"]
 
 # Linux update
 RUN apt-get update \
@@ -58,9 +70,6 @@ RUN apt-get install -y unzip \
     && unzip sonar-scanner-$SONAR_SCANNER_MSBUILD_VERSION-$NETAPP_VERSION.zip -d /sonar-scanner \
     && rm sonar-scanner-$SONAR_SCANNER_MSBUILD_VERSION-$NETAPP_VERSION.zip \
     && chmod +x -R /sonar-scanner
-
-
-
 
 # Cleanup
 RUN apt-get -q autoremove \
