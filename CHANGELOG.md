@@ -1,6 +1,16 @@
 # CHANGELOG
 
-## 10.3.0 (2025JUL20)
+## 10.4.1 (2026JAN14)
+
+* SonarScanner for .Net 10.4.1
+* .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0
+* nodejs 22
+
+_Special notes:_
+
+* Adopted multi-stage build process to reduce image size
+
+## 10.3.0 (2025JUL27)
 
 * SonarScanner for .Net 10.3.0
 * .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0
