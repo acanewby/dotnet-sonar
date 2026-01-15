@@ -1,7 +1,7 @@
 # -------------------------------------------------------
 # Prep the .Net SDKs
 # -------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS sdks
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS sdks
 
 ENV DOTNET_INSTALL_DIR=/usr/share/dotnet
 
@@ -11,13 +11,16 @@ RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
     && ./dotnet-install.sh --channel 5.0 \
     && ./dotnet-install.sh --channel 6.0 \
     && ./dotnet-install.sh --channel 7.0 \
-    && ./dotnet-install.sh --channel 8.0
-    # We can stop at 8 because we already have 9
+    && ./dotnet-install.sh --channel 8.0 \
+    && ./dotnet-install.sh --channel 9.0
+    # We can stop at 9 because we already have 10
 
 # -------------------------------------------------------
 # Build the scanner
 # -------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:9.0
+FROM mcr.microsoft.com/dotnet/sdk:10.0
+
+ARG TARGETARCH
 
 # Dockerfile meta-information
 LABEL maintainer="intellicon" \
@@ -27,14 +30,14 @@ LABEL maintainer="intellicon" \
 # Choose SONAR_SCANNER_MSBUILD_VERSION and NETAPP_VERSION accordingly
 
 ENV DOTNET_INSTALL_DIR=/usr/share/dotnet \
-    SONAR_SCANNER_MSBUILD_VERSION=10.4.1.124928 \
+    SONAR_SCANNER_MSBUILD_VERSION=11.0.0.126294 \
     NETAPP_VERSION=net \
     NODEJS_VERSION=22
 
 # Migrate all the SDKs
 COPY --from=sdks ["$DOTNET_INSTALL_DIR","$DOTNET_INSTALL_DIR"]
 
-# Linux update
+# Update Linux
 RUN apt-get update \
     && apt-get dist-upgrade -y \
     && apt-get install -y \
@@ -43,26 +46,41 @@ RUN apt-get update \
         curl \
         gnupg-agent \
         lsb-release \
-        software-properties-common
-
-RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1
+        software-properties-common \
+    && mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1
 
 # Install NodeJs
 RUN wget https://deb.nodesource.com/setup_$NODEJS_VERSION.x \
     && bash setup_$NODEJS_VERSION.x \
     && apt-get install -y nodejs
 
-# Install all necessary additional software
+# Install Docker infra
 RUN mkdir -p /etc/apt/keyrings \
-    && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
+	&& chmod a+r /etc/apt/keyrings/docker.gpg \
     && echo \
-        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-        $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
+	    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+	    $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
     && apt-get update \
     && apt-get install -y \
         docker-ce \
         docker-ce-cli \
         containerd.io
+
+# Install libssl 1
+RUN echo "Installing libssl 1.1 for $TARGETARCH" && \
+    if [ "$TARGETARCH" = "amd64" ]; then \
+      ARCHIVE="https://archive.ubuntu.com/ubuntu" && \
+      LIBSSL="libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb"; \
+    elif [ "$TARGETARCH" = "arm64" ]; then \
+      ARCHIVE="http://ports.ubuntu.com" && \
+      LIBSSL="libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb"; \
+    else \
+        echo "Unsupported architecture: $TARGETARCH"; \
+    fi && \
+    curl -O  $ARCHIVE/pool/main/o/openssl/$LIBSSL && \
+    dpkg -i $LIBSSL && \
+    apt-get install -f
 
 # Install Sonar Scanner
 RUN apt-get install -y unzip \
