@@ -15,8 +15,6 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    env:
-      BUILDX_BUILDER: "${{ env.DOCKER_REPO }}/${{ env.CLOUD_BUILDER_NAME }}"
 
     steps:
       # https://github.com/docker/metadata-action
