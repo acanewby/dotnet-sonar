@@ -70,14 +70,16 @@ RUN mkdir -p /etc/apt/keyrings \
 # Install libssl 1
 RUN echo "Installing libssl 1.1 for $TARGETARCH" && \
     if [ "$TARGETARCH" = "amd64" ]; then \
-        curl -O  https://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb && \
-        dpkg -i libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb; \
+      ARCHIVE="https://archive.ubuntu.com/ubuntu" && \
+      LIBSSL="libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb"; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
-        curl -O  http://ports.ubuntu.com/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb && \
-        dpkg -i libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb; \
+      ARCHIVE="http://ports.ubuntu.com" && \
+      LIBSSL="libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb"; \
     else \
         echo "Unsupported architecture: $TARGETARCH"; \
     fi && \
+    curl -O  $ARCHIVE/pool/main/o/openssl/$LIBSSL && \
+    dpkg -i $LIBSSL && \
     apt-get install -f
 
 # Install Sonar Scanner

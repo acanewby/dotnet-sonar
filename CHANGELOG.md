@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 11.0.0 (2026JAN15)
+
+* SonarScanner for .Net 11.0.0
+* .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0, 10
+* nodejs 22
+
+_Special notes:_
+
+* Included support for .Net 10 SDK
+* Included legacy libssl 1.1 (dependency for older .Net versions) which is no longer included in base Ubuntu 22.04 image
+
 ## 10.4.1 (2026JAN14)
 
 * SonarScanner for .Net 10.4.1
