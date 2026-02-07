@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 11.1.0 (2026FEB07)
+
+* SonarScanner for .Net 11.1.0
+* .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0, 10
+* nodejs 22
+
 ## 11.0.0 (2026JAN15)
 
 * SonarScanner for .Net 11.0.0
