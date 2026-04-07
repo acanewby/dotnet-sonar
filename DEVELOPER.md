@@ -26,8 +26,8 @@
    * Update CHANGELOG.md
       * Set Date to actual release date
 6. GitFlow->Finish Release
-7. Push to Docker Hub
-   * Observe and [verify build](https://hub.docker.com/repository/registry-1.docker.io/intellicon/dotnet-sonar/builds)
+7. Push to GitHub
+   * Observe and [verify build](https://github.com/acanewby/dotnet-sonar/actions)
 8. On `develop` branch
    * Add `x.x.x (UNRELEASED)` placeholder
 

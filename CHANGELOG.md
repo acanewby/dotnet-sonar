@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## x.x.x (UNRELEASED)
+
 ## 11.2.1 (2026APR07)
 
 * SonarScanner for .Net 11.2.1
