@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 11.2.1 (2026APR07)
+
+* SonarScanner for .Net 11.2.1
+* .Net SDKs 5.0, 6.0, 7.0, 8.0, 9.0, 10
+* .Net Framework 4.0, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1, 4.7.2, 4.8
+* nodejs 22
+
+_Enhancements:_
+
+* Added .NET Framework analysis support via Mono runtime and pre-warmed reference assemblies (net40 through net48). This enables SonarQube analysis of legacy .NET Framework projects on Linux — previously only .NET Core/5+ projects were supported. Reference assemblies are baked into the image for reliable operation in network-restricted environments.
+* Simplified Docker installation by switching from Docker CE official repository to Ubuntu's `docker.io` package, reducing external build dependencies while retaining full Docker CLI functionality for Docker-in-Docker scenarios.
+
 ## 11.1.0 (2026FEB07)
 
 * SonarScanner for .Net 11.1.0
