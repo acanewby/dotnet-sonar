@@ -16,6 +16,7 @@
    * `docker run --rm dotnet-sonar:x.y.z dotnet --list-sdks`
    * `docker run --rm dotnet-sonar:x.y.z find /root/.nuget/packages -maxdepth 1 -name "microsoft.netframework.referenceassemblies.net*" -type d | sort`
    * `docker run --rm dotnet-sonar:x.y.z mono --version`
+   * `docker run --rm dotnet-sonar:x.y.z node --version`
    * `docker run --rm dotnet-sonar:x.y.z docker --version`
 4. GitFlow->Finish Feature
  
